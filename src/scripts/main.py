@@ -11,16 +11,17 @@ else:
     dfs = []
     for excel_files in excel_files:
         try:
-            df_temp = pd.read_excel(excel_files)
+            df_temp = pd.read_excel(excel_file)
             file_name = os.path.basename(excel_files)
-            if "brasil" in file_name.lower():
-                df_temp["location"] = "br"
-            elif "france" in file_name.lower():
-                df_temp["location"] = "fr"
-            elif "italy" in file_name.lower():
-                df_temp["location"] = "it"
+            if 'brasil' in file_name.lower():
+            df_temp['location'] = 'br'
+            elif 'france' in file_name.lower():
+            df_temp['location'] = 'fr'
+            elif 'italian' in file_name.lower():
+            df_temp['location'] = 'it'
 
-            df_temp["campaing"] = df_temp["utm_link"].str.extract(r"utm_campaign=(.*)")
+            df_temp['campaign'] = df_temp['utm_link'].str.extract(r'utm_campaign=(.*)')
+            dfs.append(df_temp)
 
         except Exception as e:
             print(f"Erro ao ler o arquivo {excel_files} : {e}")
